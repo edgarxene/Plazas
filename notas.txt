@@ -1,0 +1,26 @@
+Cotejamiento
+Al crear la base de datos MySQL, asegúrate que los campos string y demás esten en utf8_spanish_ci y el cotejamiento de las tablas en utf_unicode_ci 
+(más tarde en Operations > Collation de phpMyAdmin se puede cambiar)
+
+
+CREATE TABLE bitacora (
+     id MEDIUMINT NOT NULL AUTO_INCREMENT,
+     rfc CHAR(255) NOT NULL,
+	 nombre CHAR(255) NOT NULL,
+     curp CHAR(255) NOT NULL,
+     cvepre CHAR(255) NOT NULL,
+     desde CHAR(255) NOT NULL,
+     hasta CHAR(255) NOT NULL,
+     movimiento CHAR(255) NOT NULL,
+     ct CHAR(255) NOT NULL,
+	 updated_at TIMESTAMP NOT NULL DEFAULT NOW() ON UPDATE NOW(),
+	 created_at TIMESTAMP NOT NULL,
+     PRIMARY KEY (id)
+);
+
+
+LOAD DATA INFILE 'C:/Users/escruz/Documents/Plazas.csv' INTO TABLE bitacora
+FIELDS TERMINATED BY ','
+LINES TERMINATED BY '\n'
+(rfc, nombre, curp, cvepre, desde, hasta,movimiento, ct);
+
